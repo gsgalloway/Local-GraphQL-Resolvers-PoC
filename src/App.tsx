@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 import * as React from 'react';
 import { Query, useMutation } from 'react-apollo';
 
