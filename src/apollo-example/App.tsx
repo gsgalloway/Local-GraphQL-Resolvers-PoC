@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import * as React from 'react';
-import { Query, useMutation } from 'react-apollo';
+import { ApolloProvider, Query, useMutation } from 'react-apollo';
+import { client } from './apollo-client';
 
 const LOCAL_HELLO = gql`
   query localHello($subject: String) {
@@ -75,15 +76,17 @@ const LocalMetamaskMutation = () => {
 }
 
 const App = () => (
-  <div>
-    <h1>
-      Welcome to your own <a href="http://localhost:8080/graphiql">GraphQL</a> web front end!
-    </h1>
-    <h2>You can start editing source code and see results immediately</h2>
-    <LocalHello />
-    {/* <ServerHello /> */}
-    <LocalMetamaskMutation />
-  </div>
+  <ApolloProvider client={client}>
+    <div>
+      <h1>
+        Welcome to your own <a href="http://localhost:8080/graphiql">GraphQL</a> web front end!
+      </h1>
+      <h2>You can start editing source code and see results immediately</h2>
+      <LocalHello />
+      {/* <ServerHello /> */}
+      <LocalMetamaskMutation />
+    </div>
+  </ApolloProvider>
 );
 
 export default App;
